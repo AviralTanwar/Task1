@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+nav{
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+}
+#product_table{
+    width: 100%;
+    border-collapse: collapse;
+}
+th{
+    background-color: #e7e7e7;
+
+}
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Products</title>
+</head>
+<body>
+    <nav>
+        <h1>Products</h1>
+    </nav>
+    <div style="padding: 30px;">
+        <table id="product_table">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Popularity</th>
+                <th>Subcategory</th>
+            </tr>
+            </thead>
+            <tbody id="table-body">
+            </tbody>
+        </table>
+    </div>
+    <script>
+         fetch('https://s3.amazonaws.com/open-to-cors/assignment.json')
+            .then(response => response.json())
+            .then(data => {
+                let product_arr = Object.values(data.products);
+                product_arr.sort((a,b) => (b.popularity - a.popularity));
+                let table = document.getElementById('table-body');
+                product_arr.map(item => {
+                   let row = document.createElement("tr");
+                   let title = document.createElement("td");
+                   let price = document.createElement("td");
+                   let popularity = document.createElement("td");
+                   let subcategory = document.createElement("td");
+                   title.textContent = item.title;
+                   price.textContent = item.price;
+                   popularity.textContent = item.popularity;
+                   subcategory.textContent = item.subcategory;
+                   row.appendChild(title);
+                   row.appendChild(price);
+                   row.appendChild(popularity);
+                   row.appendChild(subcategory);
+                   table.appendChild(row);
+                })
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+</body>
+</html>
